@@ -5,12 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Solution2
+public class Solution3
 {
-    // imporve from solution1 - same algo - remove leaf
-    // use array
+    // improve solution2
     public List<Integer> findMinHeightTrees( int n, int[][] edges ) {
-
         List<Integer> result = new ArrayList<>();
         if( n == 1 ) {
             result.add( 0 );
@@ -21,6 +19,7 @@ public class Solution2
             result.add( edges[0][1] );
             return result;
         }
+
         int[] array = new int[n];
         Set<Integer>[] setArray = new HashSet[n];
 
@@ -34,28 +33,40 @@ public class Solution2
             setArray[edge[0]].add( edge[1] );
             setArray[edge[1]].add( edge[0] );
         }
-        int leaives = 0;
 
-        while( true ) {
-            List<Integer> updateList = new ArrayList<>();
-            for( int i = 0; i < n; i++ ) {
-                if( array[i] == 1 ) {
+        int leaives = 0;
+        Set<Integer> leavies = new HashSet<>();
+        for( int i = 0; i < n; i++ ) {
+            if( array[i] == 1 ) {
+                leavies.add( i );
+            }
+        }
+
+        if( n - leaives > 2 ) {
+            while( true ) {
+                Set<Integer> newLeavies = new HashSet<>();
+                for( int i : leavies ) {
                     array[i] = 0;
                     leaives++;
                     for( int j : setArray[i] ) {
-                        updateList.add( j );
+                        if( array[j] > 0 ) {
+                            array[j] = array[j] - 1;
+                            if( array[j] == 1 ) {
+                                newLeavies.add( j );
+                            }
+                        }
+
                     }
                 }
-            }
-
-            if( n - leaives <= 2 ) {
-                break;
-            }
-
-            for( int i : updateList ) {
-                if( array[i] > 0 ) {
-                    array[i] = array[i] - 1;
+                if( n - leaives == 1 ) {
+                    result.addAll( newLeavies );
+                    break;
                 }
+                if( n - leaives == 2 ) {
+                    break;
+                }
+
+                leavies = newLeavies;
             }
         }
 
@@ -66,13 +77,14 @@ public class Solution2
         }
 
         return result;
+
     }
 
     public static void main( String[] args ) {
         // int[][] edges = { { 0, 1 }, { 1, 2 }, { 1, 3 }, { 2, 4 }, { 3, 5 }, { 4, 6 } };
-        // int[][] edges = { { 1, 0 }, { 1, 2 }, { 1, 3 } };
-        int[][] edges = { { 0, 1 }, { 0, 2 }, { 0, 3 }, { 3, 4 }, { 4, 5 } };
-        Solution2 s = new Solution2();
-        s.findMinHeightTrees( 6, edges );
+        int[][] edges = { { 1, 0 }, { 1, 2 }, { 1, 3 } };
+        // int[][] edges = { { 0, 1 }, { 0, 2 }, { 0, 3 }, { 3, 4 }, { 4, 5 } };
+        Solution3 s = new Solution3();
+        s.findMinHeightTrees( 4, edges );
     }
 }
