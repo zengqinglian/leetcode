@@ -3,7 +3,11 @@ package reverseLinkedList;
 public class Solution
 {
     public ListNode reverseList( ListNode head ) {
+
         ListNode previous = head;
+        if( head == null ) {
+            return null;
+        }
         ListNode current = head.next;
         if( current == null ) {
             return head;
