@@ -18,18 +18,6 @@ public class NestedIterator implements Iterator<Integer>
     public Integer next() {
 
         NestedInteger current = stack.pop();
-        //
-        // while( current != null && !current.isInteger() ) {
-        // List<NestedInteger> list = current.getList();
-        // int size = list.size();
-        // for( int i = size - 1; i >= 0; i-- ) {
-        // stack.push( list.get( i ) );
-        // }
-        // if( stack.isEmpty() ) {
-        // break;
-        // }
-        // current = stack.pop();
-        // }
 
         return current.getInteger();
     }
