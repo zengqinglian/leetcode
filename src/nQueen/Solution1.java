@@ -30,6 +30,7 @@ public class Solution1
             }
         }
         solve( board, N, 0, res );
+        System.out.print( res.size() );
         return res;
     }
 
@@ -70,5 +71,10 @@ public class Solution1
             if( board[row + step][col - step++] != '.' )
                 return false;
         return true;
+    }
+
+    public static void main( String[] args ) {
+        Solution1 s = new Solution1();
+        s.solveNQueens( 6 );
     }
 }

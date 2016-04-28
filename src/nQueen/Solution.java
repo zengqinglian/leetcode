@@ -19,6 +19,7 @@ public class Solution
         int[][] available = new int[n][n];
         getResult( available, result, 0, n );
 
+        System.out.print( result.size() );
         return result;
     }
 
@@ -84,7 +85,7 @@ public class Solution
 
     public static void main( String[] args ) {
         Solution s = new Solution();
-        s.solveNQueens( 4 );
+        s.solveNQueens( 6 );
     }
 
 }
