@@ -23,9 +23,14 @@ public class Solution1
         for( int k = 2; k < n; ++k ) {
             for( int left = 0; left < n - k; ++left ) {
                 int right = left + k;
-                for( int i = left + 1; i < right; ++i )
+                for( int i = left + 1; i < right; ++i ) {
+                    System.out.println( "DP[" + left + "][" + right + "] =" + " newNums[ " + left + "]" + newNums[left]
+                            + "* newNums[" + i + "]" + newNums[i] + "* newNums[" + right + "]" + newNums[right] + " + dp[" + left
+                            + "][" + i + "] " + dp[left][i] + " + dp[" + i + "][" + right + "] " + dp[i][right] + "="
+                            + (newNums[left] * newNums[i] * newNums[right] + dp[left][i] + dp[i][right]) );
                     dp[left][right] = Math.max( dp[left][right], newNums[left] * newNums[i] * newNums[right] + dp[left][i]
                             + dp[i][right] );
+                }
             }
         }
 
