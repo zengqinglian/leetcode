@@ -23,7 +23,7 @@ public class Solution
 
     }
 
-    private static class TreeNode
+    public static class TreeNode
     {
         int val;
         TreeNode left;

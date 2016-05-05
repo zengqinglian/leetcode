@@ -3,7 +3,7 @@ package coinChange;
 import java.util.Arrays;
 
 //Still DP but best.
-public class solution4
+public class Solution4
 {
     public int coinChange( int[] coins, int amount ) {
         if( amount < 1 )
@@ -19,5 +19,12 @@ public class solution4
             }
         }
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+    }
+
+    public static void main( String[] args ) {
+        Solution4 s = new Solution4();
+        int[] coins = { 2, 5, 8 };
+        s.coinChange( coins, 20 );
+
     }
 }
