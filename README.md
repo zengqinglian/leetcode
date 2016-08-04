@@ -1,2 +1,2 @@
-# leetcode oneline algo test
+# leetcode online algo test
 https://leetcode.com/problemset/algorithms/
