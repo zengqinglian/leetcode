@@ -1,7 +1,7 @@
 package uniquePaths2;
 
 public class Solution {
-    // dp solution
+    // dp solution O(m*n)
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         if (m == 0) {
