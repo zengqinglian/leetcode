@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Solution {
+  // solution beat 50%
   public int findCircleNum(int[][] M) {
     if (M == null) {
       return 0;
