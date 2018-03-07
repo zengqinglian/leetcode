@@ -3,7 +3,7 @@ package wordSearch;
 import java.util.Stack;
 
 public class Solution {
-    // 280 solution - very slow beat 5%
+    // 280ms solution - very slow beat 5%
     public boolean exist(char[][] board, String word) {
 	if (board.length == 0) {
 	    return false;
