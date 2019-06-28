@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Solution1 {
-    // 17ms solution , meet avg
+    // 14ms solution , meet avg
     public int numTilePossibilities(String tiles) {
-	Map<Character, Integer> map = new HashMap<>();
+	Map<Character, Integer> map = new HashMap<>(7);
 	for (char c : tiles.toCharArray()) {
 	    Integer v = map.get(c);
 	    if (v == null) {
