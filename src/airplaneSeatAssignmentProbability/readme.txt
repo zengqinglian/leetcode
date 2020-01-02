@@ -21,3 +21,5 @@ Explanation: The second person has a probability of 0.5 to get the second seat (
 Constraints:
 
 1 <= n <= 10^5
+
+https://leetcode.com/problems/airplane-seat-assignment-probability/
