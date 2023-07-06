@@ -1,47 +1,74 @@
 package basicCalculatorII;
 
 import java.util.LinkedList;
-
-public class Solution1 {
+/*
+Runtime
+55 ms
+Beats
+15.27%
+Memory
+80.3 MB
+Beats
+5.8%
+ */
+public class Solution {
     public int calculate(String s) {
-        String validateStr = s.replace(" ","");
-        String[] array = validateStr.split("[+*/-]");
-        String[] ops = validateStr.split("[0-9]+");
-        LinkedList<Integer> ll = new LinkedList<>();
-        for (int i=1; i<ops.length; i++) {
-            String op = ops[i].trim();
-            if (op.equals("*")) {
-                int newVal = Integer.parseInt(array[i-1].trim()) * Integer.parseInt(array[i].trim());
-                ll.add(newVal);
-            }else if (op.equals("/")) {
-                int newVal = Integer.parseInt(array[i-1]) / Integer.parseInt(array[i]);
-                ll.add(newVal);
-            }else{
+        LinkedList<String> ll = new LinkedList<>();
 
+        int num = 0;
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (c=='+' || c=='-' || c=='*' || c=='/') {
+                ll.add(String.valueOf(num));
+                ll.add(String.valueOf(c));
+                num = 0;
+            }else if (c!=' ') {
+                num = num * 10 + (c-'0');
             }
         }
-
-        if (counter==0) {
-            return Integer.parseInt(array[array.length-1]);
+        ll.add(String.valueOf(num));
+        if (ll.size() == 1) {
+            return Integer.parseInt(ll.pollFirst());
         }
+        int size = ll.size();
+        for (int i=0; i<size-1; i+=2) {
+            String first = ll.pollFirst();
+            String op = ll.pollFirst();
+            int second = Integer.parseInt(ll.peekFirst());
+            if (op.equals( "*")) {
+                ll.pollFirst();
+                ll.push(String.valueOf(Integer.parseInt(first)*second));
+
+            }else if (op.equals( "/")) {
+                ll.pollFirst();
+                ll.push(String.valueOf(Integer.parseInt(first)/second));
+
+            }else {
+                ll.add(first);
+                ll.add(op);
+            }
+        }
+        if (ll.size()==1) {
+            return Integer.parseInt(ll.pollFirst());
+        }
+        ll.add(ll.pollFirst());
         int res = 0;
-        for (int i=1; i<ops.length; i++) {
-            String op = ops[i].trim();
-            if (op.equals("+")) {
-                int newVal = Integer.parseInt(array[i-1].trim()) + Integer.parseInt(array[i].trim());
-                res+=newVal;
-            }else if (op.equals("-")) {
-                int newVal = Integer.parseInt(array[i-1]) - Integer.parseInt(array[i]);
-                res+=newVal;
+        while(ll.size()>1) {
+            int first = Integer.parseInt(ll.pollFirst());
+            String op = ll.pollFirst();
+            int second = Integer.parseInt(ll.pollFirst());
+            if (op.equals( "+")){
+                res = (first + second);
+            }else {
+                res = (first - second);
             }
+            ll.push(String.valueOf(res));
         }
         return res;
-
-
     }
 
     public static void main(String[] args) {
-        Solution1 s = new Solution1();
+        Solution s = new Solution();
         s.calculate(" 3+5 / 2*5-2  ");
     }
 }
