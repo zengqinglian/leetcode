@@ -1,5 +1,14 @@
 package palindromeLinkedList;
-
+/*
+4 ms Beats
+86.90%
+of users with Java
+Memory
+68.30 MB
+Beats
+52.99%
+of users with Java
+ */
 public class Solution {
     public boolean isPalindrome(ListNode head) {
         ListNode pre = null;
