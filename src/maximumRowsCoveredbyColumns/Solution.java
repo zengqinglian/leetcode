@@ -1,12 +1,13 @@
 package maximumRowsCoveredbyColumns;
 /*
-6 ms
+5 ms
 Beats
-34.52%
+36.90%
 Analyze Complexity
 Memory
-43.16 MB
-Beats 16.67%
+41.24 MB
+Beats
+90.48%
  */
 public class Solution {
     public int maximumRows(int[][] matrix, int numSelect) {
@@ -41,17 +42,17 @@ public class Solution {
     }
 
     private boolean numberOfOnes (int v, int numSelect) {
-        String s = Integer.toBinaryString(v);
         int cnt = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '1') {
+        while (v>0) {
+            if (v % 2 == 0) {
                 cnt++;
+                if (cnt > numSelect) {
+                    return false;
+                }
             }
-            if (cnt > numSelect) {
-                return false;
-            }
+            v /= 2;
         }
-        return cnt == numSelect;
+        return (cnt == numSelect);
     }
 
     public static void main(String[] args) {
