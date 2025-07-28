@@ -23,7 +23,7 @@ public class Solution {
                 }
             }
         }
-        return dp[nums.length-1] == 0 ? -1: dp[nums.length-1];
+        return dp[nums.length-1] >= 0 ? -1: dp[nums.length-1];
     }
 
     public static void main(String[] args) {
